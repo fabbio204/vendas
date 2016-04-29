@@ -17,6 +17,13 @@ return [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
         ],
+        'db'=>[
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=localhost;dbname=vendas',
+            'username' => 'root',
+            'password' => '',
+            'charset' => 'utf8',
+        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
