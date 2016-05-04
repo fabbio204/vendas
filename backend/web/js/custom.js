@@ -124,12 +124,6 @@ $(document).ready(function() {
 });
 // /Tooltip
 
-// Progressbar
-if ($(".progress .progress-bar")[0]) {
-    //$('.progress .progress-bar').progressbar(); // bootstrap 3
-}
-// /Progressbar
-
 // Switchery
 $(document).ready(function() {
     if ($(".js-switch")[0]) {
@@ -269,3 +263,11 @@ if (typeof NProgress != 'undefined') {
     jQuery.fn[sr] = function(fn){  return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr); };
 
 })(jQuery,'smartresize');
+
+// Funções do sistema Vendas
+
+// Modal
+$(document).on('click','.abrir-modal',function(){
+    var href = $(this).data('href');
+    $('#meu-modal').load(href).modal();
+});

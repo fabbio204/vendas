@@ -28,6 +28,18 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'request'=>[
+            'baseUrl'=>'',
+        ],
+        'urlManager' => [
+            'enableStrictParsing'=>false,
+            // Disable index.php
+            'showScriptName' => false,
+            // Disable r= routes
+            'enablePrettyUrl' => true,
+            'rules' => [
+            ],
+        ],
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,

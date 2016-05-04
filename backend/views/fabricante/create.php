@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Fabricante */
 
-$this->title = 'Create Fabricante';
+$this->title = 'Cadastrar Fabricante';
 $this->params['breadcrumbs'][] = ['label' => 'Fabricantes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

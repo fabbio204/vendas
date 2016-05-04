@@ -6,14 +6,22 @@ use Yii;
 use backend\models\Fabricante;
 use backend\models\FabricanteBusca;
 use yii\web\Controller;
-use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use backend\servicos\FabricanteServico;
 
 /**
  * FabricanteController implements the CRUD actions for Fabricante model.
  */
 class FabricanteController extends Controller
 {
+    private $servico;
+    
+    // Construtor
+    public function __construct($id, $module, $config = []) {
+        parent::__construct($id, $module, $config);
+        $this->servico = new FabricanteServico();
+    }
+
     /**
      * @inheritdoc
      */
@@ -30,8 +38,7 @@ class FabricanteController extends Controller
     }
 
     /**
-     * Lists all Fabricante models.
-     * @return mixed
+     * Lista todos os Fabricantes.
      */
     public function actionIndex()
     {
@@ -49,10 +56,10 @@ class FabricanteController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionDetalhes($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
+        return $this->renderAjax('detalhes', [
+            'model' => $this->servico->obterPorId($id),
         ]);
     }
 
@@ -65,8 +72,9 @@ class FabricanteController extends Controller
     {
         $model = new Fabricante();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idfabricante]);
+        if ($model->load(Yii::$app->request->post())) {
+            $this->servico->cadastrar($model);            
+            return $this->redirect('index');
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -80,12 +88,13 @@ class FabricanteController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
+    public function actionEditar($id)
     {
-        $model = $this->findModel($id);
+        $model = $this->servico->obterPorId($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idfabricante]);
+        if ($model->load(Yii::$app->request->post())) {
+            $this->servico->atualizar($model);
+            return $this->redirect(['fabricante/index']);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -99,26 +108,14 @@ class FabricanteController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
+    public function actionExcluir($id)
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the Fabricante model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Fabricante the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = Fabricante::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+        if(Yii::$app->request->isPost){
+            $this->servico->excluir($id);
+            return $this->redirect(['index']);
         }
+        
+        $fabricante = $this->servico->obterPorId($id);
+        return $this->renderAjax('excluir',['model'=>$fabricante]);
     }
 }

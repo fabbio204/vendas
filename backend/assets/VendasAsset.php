@@ -10,20 +10,22 @@ namespace backend\assets;
 use yii\web\AssetBundle;
 
 /**
- * @author Qiang Xue <qiang.xue@gmail.com>
- * @since 2.0
+ * @author Fábio Lima
  */
-class AppAsset extends AssetBundle
+class VendasAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
+        'bootstrap/css/bootstrap.min.css',
+        'font-awesome/css/font-awesome.min.css',
+        'css/custom.min.css',
     ];
     public $js = [
+        'bootstrap/js/bootstrap.min.js',
+        'js/custom.js',
     ];
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset'
+        'yii\web\JqueryAsset',
     ];
 }

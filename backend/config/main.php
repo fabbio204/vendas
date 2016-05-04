@@ -1,13 +1,12 @@
 <?php
+
 $params = array_merge(
-    require(__DIR__ . '/../../common/config/params.php'),
-    require(__DIR__ . '/../../common/config/params-local.php'),
-    require(__DIR__ . '/params.php'),
-    require(__DIR__ . '/params-local.php')
+        require(__DIR__ . '/../../common/config/params.php'), require(__DIR__ . '/../../common/config/params-local.php'), require(__DIR__ . '/params.php'), require(__DIR__ . '/params-local.php')
 );
 
 return [
     'id' => 'app-backend',
+    'language' => 'pt-BR',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
@@ -17,7 +16,7 @@ return [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
         ],
-        'db'=>[
+        'db' => [
             'class' => 'yii\db\Connection',
             'dsn' => 'mysql:host=localhost;dbname=vendas',
             'username' => 'root',
@@ -33,17 +32,21 @@ return [
                 ],
             ],
         ],
-        'errorHandler' => [
-            'errorAction' => 'site/error',
+        'request' => [
+            'baseUrl' => '/backend',
         ],
-        /*
+//        'urlManager'=>[
+//            'scriptUrl'=>'/backend/web/index.php',
+//        ],
         'urlManager' => [
-            'enablePrettyUrl' => true,
+            'enableStrictParsing'=>false,
+            // Disable index.php
             'showScriptName' => false,
+            // Disable r= routes
+            'enablePrettyUrl' => true,
             'rules' => [
             ],
         ],
-        */
     ],
     'params' => $params,
 ];

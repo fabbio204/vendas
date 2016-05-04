@@ -1,4 +1,6 @@
-
+<?php
+use yii\helpers\Html;
+?>
 <div class="top_nav">
 
     <div class="nav_menu">
@@ -10,7 +12,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="">
                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <img src="images/img.jpg" alt="">John Doe
+                        <?= Html::img(['images/img.jpg'])?>John Doe
                         <span class=" fa fa-angle-down"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -39,7 +41,7 @@
                         <li>
                             <a>
                                 <span class="image">
-                                    <img src="images/img.jpg" alt="Profile Image" />
+                                    <?= Html::img(['images/img.jpg'])?>
                                 </span>
                                 <span>
                                     <span>John Smith</span>
@@ -53,7 +55,7 @@
                         <li>
                             <a>
                                 <span class="image">
-                                    <img src="images/img.jpg" alt="Profile Image" />
+                                    <?= Html::img(['images/img.jpg'])?>
                                 </span>
                                 <span>
                                     <span>John Smith</span>
@@ -67,7 +69,7 @@
                         <li>
                             <a>
                                 <span class="image">
-                                    <img src="images/img.jpg" alt="Profile Image" />
+                                    <?= Html::img(['images/img.jpg'])?>
                                 </span>
                                 <span>
                                     <span>John Smith</span>
@@ -81,7 +83,7 @@
                         <li>
                             <a>
                                 <span class="image">
-                                    <img src="images/img.jpg" alt="Profile Image" />
+                                    <?= Html::img(['images/img.jpg'])?>
                                 </span>
                                 <span>
                                     <span>John Smith</span>

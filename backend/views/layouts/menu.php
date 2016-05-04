@@ -1,3 +1,6 @@
+<?php
+use yii\helpers\Html;
+?>
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">  
         <div class="navbar nav_title" style="border: 0;">
@@ -8,19 +11,28 @@
 
         <div class="profile">
             <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                <?= Html::img(['images/img.jpg'], ['class'=>'img-circle profile_img'])?>
             </div>
             <div class="profile_info">
-                <span>Welcome,</span>
+                <span>Bem vindo,</span>
                 <h2>John Doe</h2>
             </div>
         </div>
         <br />
         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
-                <h3>General</h3>
+                <h3>Menu</h3>
                 <ul class="nav side-menu">
-                    <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                    <li>
+                        <a><i class="fa fa-cogs"></i> Cadastros <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><?= Html::a('Fabricante', ['fabricante/index'])?></li>
+                            <li><?= Html::a('Fabricante', ['fabricante/index'])?></li>
+                            <li><?= Html::a('Fabricante', ['fabricante/index'])?></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="index.html">Dashboard</a></li>
                             <li><a href="index2.html">Dashboard2</a></li>
